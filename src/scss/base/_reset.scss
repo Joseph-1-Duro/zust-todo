@@ -1,0 +1,173 @@
+@mixin Transition {
+  transition: border 350ms ease;
+}
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 100%;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  @include Transition;
+
+  &:hover {
+    border-color: #646cff;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+input {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  @include Transition;
+
+  &:hover {
+    border-color: #646cff;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+body {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-family: 'Fira Code';
+}
+
+// utility classes
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+// app
+.form {
+  margin-block: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  input {
+    padding: 0.6em 1.2em;
+    flex: 3;
+  }
+
+  button {
+    flex: 1;
+  }
+}
+
+.todo-list {
+  display: grid;
+  gap: 1.5rem;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  .clear-btn {
+    width: fit-content;
+    margin-inline: auto;
+    text-transform: uppercase;
+  }
+}
+
+.todo-item {
+  padding: 0.75em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1a1a1a;
+  border: 1px solid transparent;
+  @include Transition;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    border-color: #646cff;
+  }
+
+  button {
+    border: none;
+
+    &:hover {
+      background-color: hsl(0, 0%, 100%, 0.1);
+    }
+  }
+}
+
+// modal
+.modal-container {
+  min-height: 100dvh;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: hsla(0, 0%, 10%, 0.9);
+  padding: 1rem;
+
+  & > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1rem;
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .modal-form {
+    padding: 1rem;
+    background-color: hsla(0, 0%, 5%, 0.9);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+
+    form, button {
+      padding-inline: 0.85em;
+    }
+  }
+}
