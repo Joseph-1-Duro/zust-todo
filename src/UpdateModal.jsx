@@ -1,9 +1,8 @@
 import { useState } from "react";
 import useTodoStore from "./stores/useTodoStore"
 
-const UpdateModal = ({ id }) => {
-  const { toggleUpdate } = useTodoStore();
-  const { updateText } = useTodoStore()
+const UpdateModal = () => {
+  const { toggleUpdate, updateId, updateText, setUpdateId } = useTodoStore();
 
   const [ textContent, setTextContent ] = useState('');
 
@@ -16,7 +15,7 @@ const UpdateModal = ({ id }) => {
     
     if (!textContent) return
     
-    updateText(id, textContent);
+    updateText(updateId, textContent);
 
     setTimeout(() => {
       setTextContent('')
@@ -24,6 +23,8 @@ const UpdateModal = ({ id }) => {
         toggleUpdate()
       }, 500)
     }, 500)
+
+    setUpdateId(null)
   }
   
   return (
@@ -37,6 +38,7 @@ const UpdateModal = ({ id }) => {
             type="text"
             placeholder="Update task.."
             value={textContent}
+            autoFocus
             onInput={(e) => setTextContent(e.target.value)}
           />
           <button>Update</button>

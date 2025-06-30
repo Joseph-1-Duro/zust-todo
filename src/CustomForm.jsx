@@ -28,6 +28,8 @@ const CustomForm = () => {
         value={inputText}
         onInput={(e) => setInputText(e.target.value)}
         placeholder="Enter a task..."
+        name="Todo Task"
+        id="Todo-input"
       />
       <button>📥</button>
     </form>

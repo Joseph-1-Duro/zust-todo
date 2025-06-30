@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import useTodoStore from "./stores/useTodoStore"
-import UpdateModal from "./UpdateModal";
 
 const TodoItem = ({ id, text }) => {
-  const { deleteTask, toggleUpdate, update } = useTodoStore();
+  const { deleteTask, toggleUpdate, setUpdateId } = useTodoStore();
 
   const removeTask = () => {
     deleteTask(id)
@@ -11,16 +9,8 @@ const TodoItem = ({ id, text }) => {
 
   const updateTask = () => {
     toggleUpdate()
-    console.log(id)
+    setUpdateId(id)
   }
-
-  useEffect(() => {
-    document.documentElement.style.overflow =
-      update ?
-      'hidden'
-      :
-      'auto'
-  }, [update])
 
   return (
     <div className="todo-item" id={id}>
@@ -30,8 +20,6 @@ const TodoItem = ({ id, text }) => {
         <button onClick={removeTask}>🗑️</button>
         <button onClick={updateTask}>📝</button>
       </div>
-
-      {update && <UpdateModal id={id} />}
     </div>
   )
 }

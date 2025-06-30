@@ -4,6 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 const initialState = {
   list: [],
   update: false,
+  updateId: null
 };
 
 const useTodoStore = create(
@@ -17,10 +18,14 @@ const useTodoStore = create(
         })),
       clearList: () => set({ list: [] }),
       toggleUpdate: () => set((state) => ({ update: !state.update })),
-      updateText: (id, newText) =>
+      setUpdateId: (id) => set(() => ({updateId: id})),
+      updateText: (itemId, newText) =>
         set((state) => ({
           list: state.list.map((item) =>
-            item.id === id ? { ...item, text: newText } : item
+            item.id === itemId ? 
+            { ...item, text: newText }
+            : 
+            item
           ),
         })),
     };
